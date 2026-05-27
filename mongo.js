@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 // MongoDB connection URI
-const MONGO_URI = 'mongodb+srv://anujkumar221203:KjAgEMd2wpHX3tm2@hier-major-project.7x8kzsj.mongodb.net/?appName=HIER-Major-Project'; 
+const MONGO_URI = 'mongodb://127.0.0.1:27017/hierDB'; 
 
 
 // Function to connect to MongoDB
