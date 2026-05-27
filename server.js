@@ -44,7 +44,7 @@ app.use('/public',
 // MONGODB CONNECTION
 // ======================
 
-mongoose.connect('mongodb+srv://anujkumar221203:KjAgEMd2wpHX3tm2@hier-major-project.7x8kzsj.mongodb.net/?appName=HIER-Major-Project')
+mongoose.connect('mongodb+srv://anujkumar221203:AnujKumar9315266481@hier-major-project.7x8kzsj.mongodb.net/?appName=HIER-Major-Project')
 
 .then(() => {
   console.log('✅ MongoDB Connected');
