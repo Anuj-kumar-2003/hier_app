@@ -16,7 +16,14 @@ const app = express();
 // MIDDLEWARE
 // ======================
 
-app.use(cors());
+app.use(
+cors({
+origin: "https://hier-app.vercel.app",
+methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+allowedHeaders: ["Content-Type", "Authorization"],
+credentials: true,
+})
+);
 
 app.use(express.json());
 
@@ -37,7 +44,7 @@ app.use('/public',
 // MONGODB CONNECTION
 // ======================
 
-mongoose.connect('mongodb://127.0.0.1:27017/hierDB')
+mongoose.connect('mongodb+srv://anujkumar221203:KjAgEMd2wpHX3tm2@hier-major-project.7x8kzsj.mongodb.net/?appName=HIER-Major-Project')
 
 .then(() => {
   console.log('✅ MongoDB Connected');
