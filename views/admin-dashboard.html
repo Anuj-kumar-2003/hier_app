@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - HIER</title>
+    <link rel="stylesheet" href="/public/admin-dashboard.css" />
+</head>
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                🚗 HIER
+            </div>
+
+            <ul class="menu">
+                <li class="active">Dashboard</li>
+                <li>Customers</li>
+                <li>Drivers</li>
+                <li>Bookings</li>
+                <li>Payments</li>
+                <li>Reports</li>
+                <li>Settings</li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Topbar -->
+            <header class="topbar">
+                <h1>Admin Dashboard</h1>
+
+                <div class="admin-profile">
+                    👤 Admin
+                </div>
+            </header>
+
+            <!-- Stats -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+                    <h2 id="totalCustomers">0</h2>
+                    <p>Total Customers</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2 id="totalDrivers">0</h2>
+                    <p>Total Drivers</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2 id="totalBookings">0</h2>
+                    <p>Total Bookings</p>
+                </div>
+
+                <div class="stat-card">
+                    <h2 id="totalRevenue">₹0</h2>
+                    <p>Total Revenue</p>
+                </div>
+
+            </section>
+
+            <!-- Recent Bookings -->
+            <section class="table-section">
+
+                <div class="section-header">
+                    <h2>Recent Bookings</h2>
+                </div>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Driver</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="bookingTable">
+
+                        <tr>
+                            <td>HIER1001</td>
+                            <td>Rahul Sharma</td>
+                            <td>Rajesh Kumar</td>
+                            <td class="status confirmed">Confirmed</td>
+                        </tr>
+
+                        <tr>
+                            <td>HIER1002</td>
+                            <td>Priya Singh</td>
+                            <td>Amit Verma</td>
+                            <td class="status pending">Pending</td>
+                        </tr>
+
+                        <tr>
+                            <td>HIER1003</td>
+                            <td>Arjun Patel</td>
+                            <td>Sunil Kumar</td>
+                            <td class="status completed">Completed</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+            <!-- Pending Drivers -->
+            <section class="table-section">
+
+                <div class="section-header">
+                    <h2>Pending Driver Verifications</h2>
+                </div>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>City</th>
+                            <th>Experience</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Vikas Kumar</td>
+                            <td>Delhi</td>
+                            <td>5 Years</td>
+
+                            <td>
+                                <button class="approve-btn">
+                                    Approve
+                                </button>
+
+                                <button class="reject-btn">
+                                    Reject
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Ravi Sharma</td>
+                            <td>Mumbai</td>
+                            <td>3 Years</td>
+
+                            <td>
+                                <button class="approve-btn">
+                                    Approve
+                                </button>
+
+                                <button class="reject-btn">
+                                    Reject
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="/public/admin-dashboard.js"></script>
+
+</body>
+</html>

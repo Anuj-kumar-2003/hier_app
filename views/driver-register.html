@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Driver Registration - HIER</title>
+    <link rel="stylesheet" href="/public/customer-register.css" />
+</head>
+<body>
+    <div class="register-container">
+        <form id="driverRegisterForm" class="register-card">
+            <div class="logo">🚗 HIER</div>
+
+            <h1>Join as a Driver</h1>
+            <p class="subtitle">
+                Register to start receiving driving opportunities through HIER
+            </p>
+
+            <div class="input-group">
+                <label for="fullName">Full Name</label>
+                <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="Enter your full name"
+                    required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Mobile Number</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter your mobile number"
+                    pattern="[0-9]{10}"
+                    maxlength="10"
+                    required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="licenseNumber">Driving License Number</label>
+                <input
+                    type="text"
+                    id="licenseNumber"
+                    name="licenseNumber"
+                    placeholder="Enter your driving license number"
+                    required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="experience">Driving Experience (Years)</label>
+                <input
+                    type="number"
+                    id="experience"
+                    name="experience"
+                    min="0"
+                    placeholder="Enter years of experience"
+                    required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="city">City</label>
+                <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    placeholder="Enter your city"
+                    required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="password">Create Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create a secure password"
+                    minlength="6"
+                    required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Re-enter your password"
+                    minlength="6"
+                    required
+                />
+            </div>
+
+            <button type="submit" class="btn-register">Register as Driver</button>
+
+            <p class="login-link">
+                Already registered?
+                <a href="/views/driver-login.html">Login Here</a>
+            </p>
+
+            <p class="back-link">
+                <a href="/views/index.html">← Back to Home</a>
+            </p>
+        </form>
+    </div>
+
+<script>
+
+document
+.getElementById("driverRegisterForm")
+.addEventListener("submit", async function(e) {
+
+  e.preventDefault();
+
+  const password =
+    document.getElementById("password").value;
+
+  const confirmPassword =
+    document.getElementById("confirmPassword").value;
+
+  // Password check
+  if (password !== confirmPassword) {
+
+    alert("Passwords do not match");
+
+    return;
+  }
+
+  const data = {
+
+    name:
+      document.getElementById("fullName").value,
+
+    email:
+      document.getElementById("email").value,
+
+    phone:
+      document.getElementById("phone").value,
+
+    licenseNumber:
+      document.getElementById("licenseNumber").value,
+
+    experience:
+      document.getElementById("experience").value,
+
+    city:
+      document.getElementById("city").value,
+
+    password:
+      password
+  };
+
+  try {
+
+    const response = await fetch(
+      "http://localhost:3000/register-driver",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(data)
+      }
+    );
+
+    const result = await response.json();
+
+    console.log(result);
+
+    if (result.success) {
+
+      alert("Driver Registered Successfully");
+
+      window.location.href =
+        "/views/driver-login.html";
+
+    } else {
+
+      alert(result.error || "Registration Failed");
+    }
+
+  } catch (err) {
+
+    console.log(err);
+
+    alert("Server Error");
+  }
+
+});
+
+</script>
+
+</body>
+</html>

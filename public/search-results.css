@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    padding: 30px 20px;
+    color: #0f172a;
+}
+
+.results-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2563eb;
+    margin-bottom: 10px;
+}
+
+.results-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.results-header p {
+    color: #64748b;
+    font-size: 16px;
+}
+
+/* Trip Summary */
+.trip-summary {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.trip-summary h2 {
+    margin-bottom: 20px;
+    color: #1e3a8a;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.summary-item span {
+    display: block;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.summary-item strong {
+    font-size: 16px;
+}
+
+/* Driver Cards */
+.drivers-list {
+    display: grid;
+    gap: 25px;
+}
+
+.driver-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.driver-card:hover {
+    transform: translateY(-4px);
+}
+
+.driver-top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.driver-avatar {
+    width: 70px;
+    height: 70px;
+    background: #dbeafe;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    margin-right: 18px;
+}
+
+.driver-info h3 {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.driver-info p {
+    color: #64748b;
+    margin-bottom: 5px;
+}
+
+.rating {
+    color: #f59e0b;
+    font-weight: bold;
+}
+
+.driver-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.driver-details span {
+    display: block;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.driver-details strong {
+    font-size: 16px;
+}
+
+/* Buttons */
+.book-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.book-btn:hover {
+    background: #1d4ed8;
+}
+
+.bottom-actions {
+    margin-top: 35px;
+    text-align: center;
+}
+
+.back-btn {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .results-header h1 {
+        font-size: 28px;
+    }
+
+    .driver-top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .driver-avatar {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}

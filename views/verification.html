@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Booking Details - HIER</title>
+    <link rel="stylesheet" href="/public/verification.css" />
+</head>
+<body>
+
+    <div class="verification-container">
+        <div class="verification-card">
+
+            <div class="verify-icon">🔍</div>
+
+            <h1>Verify Your Booking Details</h1>
+            <p class="subtitle">
+                Please review all information before searching for available drivers.
+            </p>
+
+            <!-- Customer Details -->
+            <div class="details-box">
+                <h2>Customer Details</h2>
+
+                <div class="detail-row">
+                    <span>Name</span>
+                    <strong id="customerName"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Email</span>
+                    <strong id="customerEmail"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Phone</span>
+                    <strong id="customerPhone"></strong>
+                </div>
+            </div>
+
+            <!-- Trip Details -->
+            <div class="details-box">
+                <h2>Trip Details</h2>
+
+                <div class="detail-row">
+                    <span>Trip Type</span>
+                    <strong id="tripType"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Pickup Location</span>
+                    <strong id="pickupLocation"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Drop Location</span>
+                    <strong id="dropLocation"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Travel Date</span>
+                    <strong id="travelDate"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Travel Time</span>
+                    <strong id="travelTime"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Special Instructions</span>
+                    <strong id="specialInstructions"></strong>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="action-buttons">
+                <!-- <a href="/views/book-driver.html" class="btn-secondary">
+                    ← Edit Details
+                </a> -->
+
+                <button id="confirmBtn" class="btn-primary">
+                    Confirm & Search Drivers
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/public/verification.js"></script>
+</body>
+</html>

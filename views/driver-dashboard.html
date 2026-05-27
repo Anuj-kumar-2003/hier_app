@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driver Dashboard - HIER</title>
+
+ <link rel="stylesheet" href="/public/driver-dashboard.css">
+
+</head>
+<body>
+
+<div class="dashboard-container">
+
+  <div class="dashboard-card">
+
+    <div class="logo">🚗 HIER</div>
+
+    <h1>Driver Dashboard</h1>
+
+    <p class="subtitle">
+      Welcome back driver
+    </p>
+
+    <div class="info-box">
+      <label>Name</label>
+      <span id="driverName"></span>
+    </div>
+
+    <div class="info-box">
+      <label>Email</label>
+      <span id="driverEmail"></span>
+    </div>
+
+    <div class="info-box">
+      <label>Phone</label>
+      <span id="driverPhone"></span>
+    </div>
+
+    <div class="info-box">
+      <label>City</label>
+      <span id="driverCity"></span>
+    </div>
+
+    <div class="btn-group">
+
+      <button class="btn btn-primary" onclick="viewBookings()">
+        View Bookings
+      </button>
+
+      <div id="bookingsList" class="bookings-list"></div>
+
+      <button class="btn btn-danger" onclick="logout()">
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+const driver =
+  JSON.parse(localStorage.getItem("driver"));
+
+if(driver){
+
+  document.getElementById("driverName").innerText =
+    driver.name;
+
+  document.getElementById("driverEmail").innerText =
+    driver.email;
+
+  document.getElementById("driverPhone").innerText =
+    driver.phone;
+
+  document.getElementById("driverCity").innerText =
+    driver.city;
+}
+
+function viewBookings() {
+  fetch("http://localhost:3000/recent-bookings")
+    .then(res => res.json())
+    .then(data => {
+      if (data.success && data.bookings.length > 0) {
+        const list = document.getElementById("bookingsList");
+        list.innerHTML = ""; // clear old data
+
+        data.bookings.forEach(b => {
+          // Skip incomplete bookings
+          if (!b.customerName || !b.tripType || !b.pickupLocation || !b.dropLocation || !b.travelDate || !b.travelTime) {
+            return;
+          }
+
+         const item = document.createElement("div");
+item.className = "booking-item";
+item.innerHTML = `
+  <p><strong>${b.customerName}</strong> (${b.tripType})</p>
+  <p>${b.pickupLocation} → ${b.dropLocation}</p>
+  <p>${b.travelDate} at ${b.travelTime}</p>
+  <p><strong>Phone:</strong> ${b.phone}</p>
+  <p><strong>Email:</strong> ${b.customerEmail}</p>
+  <div class="contact-buttons">
+    <a href="tel:${b.phone}" class="btn btn-primary">Call Customer</a>
+    <a href="mailto:${b.customerEmail}" class="btn btn-secondary">Email Customer</a>
+  </div>
+`;
+list.appendChild(item);
+
+        });
+      } else {
+        document.getElementById("bookingsList").innerHTML = "<p>No recent bookings available.</p>";
+      }
+    })
+    .catch(err => {
+      console.error("BOOKINGS ERROR:", err);
+      alert("Error loading bookings.");
+    });
+}
+
+
+function logout(){
+
+  localStorage.removeItem("driver");
+
+  window.location.href =
+    "/views/driver-login.html";
+}
+
+</script>
+
+</body>
+</html>

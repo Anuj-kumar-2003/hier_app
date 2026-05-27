@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Review Your Submission - HIER</title>
+    <link rel="stylesheet" href="/public/review-submission.css" />
+</head>
+<body>
+
+    <div class="review-container">
+        <div class="review-card">
+
+            <div class="review-icon">📝</div>
+
+            <h1>Review Your Submission</h1>
+            <p class="subtitle">
+                Please verify all entered details before final registration.
+            </p>
+
+            <!-- Personal Details -->
+            <div class="details-box">
+                <h2>Personal Details</h2>
+
+                <div class="detail-row">
+                    <span>Full Name</span>
+                    <strong id="fullName"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Email</span>
+                    <strong id="email"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Mobile Number</span>
+                    <strong id="phone"></strong>
+                </div>
+            </div>
+
+            <!-- Additional Details -->
+            <div class="details-box">
+                <h2>Additional Details</h2>
+
+                <div class="detail-row">
+                    <span>Driving License Number</span>
+                    <strong id="licenseNumber"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Experience</span>
+                    <strong id="experience"></strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>City</span>
+                    <strong id="city"></strong>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="action-buttons">
+                <a href="/driver-register.html" class="btn-secondary">
+                    ← Edit Details
+                </a>
+
+                <button id="submitBtn" class="btn-primary">
+                    Confirm & Submit
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/public/review-submission.js"></script>
+</body>
+</html>

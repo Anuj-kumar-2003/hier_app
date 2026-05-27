@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmation - HIER</title>
+  <link rel="stylesheet" href="/public/booking-confirm.css" />
+</head>
+<body>
+  <div class="confirmation-container">
+    <div class="confirmation-card">
+      <h1>🎉 Booking Confirmed!</h1>
+      <p>Thank you for booking with <strong>HIER</strong>. Your trip details are below:</p>
+
+      <div class="details">
+        <p><strong>Name:</strong> <span id="customerName"></span></p>
+        <p><strong>Email:</strong> <span id="customerEmail"></span></p>
+        <p><strong>Phone:</strong> <span id="phone"></span></p>
+        <p><strong>Trip Type:</strong> <span id="tripType"></span></p>
+        <p><strong>Pickup:</strong> <span id="pickupLocation"></span></p>
+        <p><strong>Drop:</strong> <span id="dropLocation"></span></p>
+        <p><strong>Date:</strong> <span id="travelDate"></span></p>
+        <p><strong>Time:</strong> <span id="travelTime"></span></p>
+        <p><strong>Instructions:</strong> <span id="specialInstructions"></span></p>
+      </div>
+
+      <p class="success-msg">We’ve sent a confirmation email with your booking details.</p>
+
+      <div class="actions">
+        <a href="/views/index.html" class="btn">← Back to Home</a>
+        <a href="/views/book-driver.html" class="btn">Book Another Ride</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const booking = JSON.parse(localStorage.getItem("booking"));
+    if (booking) {
+      document.getElementById("customerName").textContent = booking.customerName;
+      document.getElementById("customerEmail").textContent = booking.customerEmail;
+      document.getElementById("phone").textContent = booking.phone;
+      document.getElementById("tripType").textContent = booking.tripType;
+      document.getElementById("pickupLocation").textContent = booking.pickupLocation;
+      document.getElementById("dropLocation").textContent = booking.dropLocation;
+      document.getElementById("travelDate").textContent = booking.travelDate;
+      document.getElementById("travelTime").textContent = booking.travelTime;
+      document.getElementById("specialInstructions").textContent = booking.specialInstructions || "None";
+    } else {
+      document.querySelector(".details").innerHTML = "<p>No booking details found.</p>";
+    }
+  </script>
+</body>
+</html>

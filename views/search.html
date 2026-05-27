@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Drivers - HIER</title>
+    <link rel="stylesheet" href="/public/search.css" />
+</head>
+<body>
+
+    <div class="search-container">
+        <div class="search-card">
+            <div class="logo">🚗 HIER</div>
+
+            <h1>Search Available Drivers</h1>
+            <p class="subtitle">
+                Enter your trip details to find verified drivers near you.
+            </p>
+
+            <form action="/search-results.html" method="GET">
+
+                <div class="input-group">
+                    <label for="tripType">Trip Type</label>
+                    <select id="tripType" name="tripType" required>
+                        <option value="">Select Trip Type</option>
+                        <option value="One-Way">One-Way</option>
+                        <option value="Roundtrip">Roundtrip</option>
+                        <option value="In-City">In-City</option>
+                        <option value="Outstation">Outstation</option>
+                        <option value="Few Hours">Few Hours</option>
+                        <option value="Few Days">Few Days</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="pickupLocation">Pickup Location</label>
+                    <input
+                        type="text"
+                        id="pickupLocation"
+                        name="pickupLocation"
+                        placeholder="Enter pickup location"
+                        required
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label for="dropLocation">Drop Location</label>
+                    <input
+                        type="text"
+                        id="dropLocation"
+                        name="dropLocation"
+                        placeholder="Enter destination"
+                        required
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label for="travelDate">Travel Date</label>
+                    <input
+                        type="date"
+                        id="travelDate"
+                        name="travelDate"
+                        required
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label for="travelTime">Travel Time</label>
+                    <input
+                        type="time"
+                        id="travelTime"
+                        name="travelTime"
+                        required
+                    />
+                </div>
+
+                <button type="submit" class="btn-search">
+                    Search Drivers
+                </button>
+
+                <p class="back-link">
+                    <a href="/views/book-driver.html">← Back to Booking Form</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

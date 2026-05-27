@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Login - HIER</title>
+    <link rel="stylesheet" href="/public/customer-login.css" />
+</head>
+<body>
+
+<div class="login-container">
+    <form id="loginForm" class="login-form">
+        <h2>Customer Login</h2>
+        <p>Login to book your driver</p>
+
+        <input type="email" id="email" placeholder="Email Address" required />
+        <input type="password" id="password" placeholder="Password" required />
+
+        <!-- Login button -->
+        <button type="submit" class="btn primary">Login</button>
+
+        <!-- Familiar Forgot Password link -->
+        <p class="forgot-link">
+            <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+        </p>
+
+        <p class="register-link">
+            Don't have an account?
+            <a href="/views/customer-register.html">Register Here</a>
+        </p>
+
+        <p class="back-link">
+            <a href="/views/index.html">← Back to Home</a>
+        </p>
+    </form>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        const response = await fetch("http://localhost:3000/login-customer", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        if (result.success) {
+            localStorage.setItem("customer", JSON.stringify(result.customer));
+            alert("Login Successful");
+            window.location.href = "/views/book-driver.html";
+        } else {
+            alert(result.message);
+        }
+    } catch (err) { 
+        console.log("LOGIN ERROR:", err);
+        alert("Login failed: " + err.message);
+    }
+});
+
+// Forgot Password link logic
+document.getElementById("forgotPasswordLink").addEventListener("click", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    if (!email) {
+        alert("Please enter your email first.");
+        return;
+    }
+
+    try {
+        const res = await fetch("http://localhost:3000/forgot-password-customer", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email })
+        });
+
+        const data = await res.json();
+        alert(data.message);
+    } catch (err) {
+        console.error("FORGOT PASSWORD ERROR:", err);
+        alert("Error requesting password reset.");
+    }
+});
+</script>
+</body>
+</html>

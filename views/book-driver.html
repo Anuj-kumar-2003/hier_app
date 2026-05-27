@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Driver - HIER</title>
+    <link rel="stylesheet" href="/public/book-driver.css" />
+</head>
+<body>
+    <div class="booking-container">
+        <form class="booking-card" id="bookingForm">
+            <div class="logo">🚗 HIER</div>
+
+            <h1>Book a Driver</h1>
+            <p class="subtitle">
+                Fill in your trip details and we’ll assign a verified driver.
+            </p>
+
+            <!-- Customer Information -->
+            <h2 class="section-title">Customer Details</h2>
+
+            <div class="input-group">
+                <label for="customerName">Full Name</label>
+                <input
+                    type="text"
+                    id="customerName"
+                    name="customerName"
+                    placeholder="Enter your full name"
+                    readonly required
+                />
+            </div>
+        
+             <div class="input-group">
+                <label for="customerEmail">Email Address</label>
+                <input
+                    type="email"
+                    id="customerEmail"
+                    name="customerEmail"
+                    placeholder="Enter your email address"
+                    readonly required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Mobile Number</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter your mobile number"
+                    pattern="[0-9]{10}"
+                    maxlength="10"
+                    readonly required
+                />
+            </div>
+
+            <!-- Trip Details -->
+            <h2 class="section-title">Trip Details</h2>
+
+            <div class="input-group">
+                <label for="tripType">Trip Type</label>
+                <select id="tripType" name="tripType" required>
+                    <option value="">Select Trip Type</option>
+                    <option value="One-Way">One-Way</option>
+                    <option value="Roundtrip">Roundtrip</option>
+                    <option value="In-City">In-City</option>
+                    <option value="Outstation">Outstation</option>
+                    <option value="Few Hours">Few Hours</option>
+                    <option value="Few Days">Few Days</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="pickupLocation">Pickup Location</label>
+                <input
+                    type="text"
+                    id="pickupLocation"
+                    name="pickupLocation"
+                    placeholder="Enter pickup location"
+                    required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="dropLocation">Drop Location</label>
+                <input
+                    type="text"
+                    id="dropLocation"
+                    name="dropLocation"
+                    placeholder="Enter destination"
+                    required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="travelDate">Travel Date</label>
+                <input
+                    type="date"
+                    id="travelDate"
+                    name="travelDate"
+                    required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="travelTime">Travel Time</label>
+                <input
+                    type="time"
+                    id="travelTime"
+                    name="travelTime"
+                    required
+                />
+            </div>
+
+            <div class="input-group">
+                <label for="specialInstructions">Special Instructions</label>
+                <textarea
+                    id="specialInstructions"
+                    name="specialInstructions"
+                    rows="4"
+                    placeholder="Any additional requirements"
+                ></textarea>
+            </div>
+
+            <button type="submit" class="btn-book">
+                Confirm Booking
+            </button>
+
+            <p class="back-link">
+                <a href="/views/index.html">← Back to Home</a>
+            </p>
+        </form>
+    </div>
+<script>
+
+// Auto-fill customer data
+window.onload = function () {
+
+  const customer =
+    JSON.parse(localStorage.getItem("customer"));
+
+  if (customer) {
+
+    document.getElementById("customerName").value =
+      customer.fullName || "";
+
+    document.getElementById("customerEmail").value =
+      customer.email || "";
+
+    document.getElementById("phone").value =
+      customer.phone || "";
+  }
+};
+
+// Booking submit
+document.getElementById("bookingForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = {
+    customerName: document.getElementById("customerName").value,
+    customerEmail: document.getElementById("customerEmail").value,
+    phone: document.getElementById("phone").value,
+    tripType: document.getElementById("tripType").value,
+    pickupLocation: document.getElementById("pickupLocation").value,
+    dropLocation: document.getElementById("dropLocation").value,
+    travelDate: document.getElementById("travelDate").value,
+    travelTime: document.getElementById("travelTime").value,
+    specialInstructions: document.getElementById("specialInstructions").value
+  };
+
+  try {
+    const response = await fetch("http://localhost:3000/book-driver", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      // ✅ Save booking details locally
+      localStorage.setItem("booking", JSON.stringify(data));
+
+      // ✅ Redirect to confirmation page
+      window.location.href = "/views/booking-confirm.html";
+    } else {
+      alert(result.message || "Booking failed");
+    }
+  } catch (err) {
+    console.error("BOOKING ERROR:", err);
+    alert("Error while booking driver.");
+  }
+});
+
+</script>
+</body>
+</html>

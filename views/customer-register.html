@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Registration - HIER</title>
+
+  <link rel="stylesheet" href="/public/customer-register.css"/>
+</head>
+
+<body>
+
+<div class="register-container">
+
+  <form id="customerRegisterForm" class="register-card">
+
+    <div class="logo">🚗 HIER</div>
+
+    <h1>Create Customer Account</h1>
+
+    <p class="subtitle">
+      Register to hire professional drivers across India
+    </p>
+
+    <div class="input-group">
+      <label>Full Name</label>
+
+      <input
+        type="text"
+        id="fullName"
+        placeholder="Enter your full name"
+        required
+      />
+    </div>
+
+    <div class="input-group">
+      <label>Email Address</label>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        required
+      />
+    </div>
+
+    <div class="input-group">
+      <label>Mobile Number</label>
+
+      <input
+        type="tel"
+        id="phone"
+        placeholder="Enter mobile number"
+        maxlength="10"
+        required
+      />
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter password"
+        required
+      />
+    </div>
+
+    <div class="input-group">
+      <label>Confirm Password</label>
+
+      <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm password"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn-register">
+      Create Account
+    </button>
+
+    <p class="login-link">
+            Already have an account?
+            <a href="/views/customer-login.html">Login Here</a>
+        </p>
+
+        <p class="back-link">
+                <a href="/views/index.html">← Back to Home</a>
+            </p>
+
+  </form>
+
+</div>
+
+<script>
+
+document
+.getElementById("customerRegisterForm")
+.addEventListener("submit", async function(e) {
+
+  e.preventDefault();
+
+  const fullName = document.getElementById("fullName").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const password = document.getElementById("password").value;
+  const confirmPassword =
+    document.getElementById("confirmPassword").value;
+
+  // Password Match
+  if (password !== confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+
+  try {
+
+    const response = await fetch(
+      "http://localhost:3000/register-customer",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          fullName,
+          email,
+          phone,
+          password
+        })
+      }
+    );
+
+    const result = await response.json();
+
+    console.log(result);
+
+    if (result.success) {
+
+      alert("Registration Successful");
+
+      window.location.href =
+        "/views/customer-login.html";
+
+    } else {
+
+      alert(result.error || "Registration Failed");
+    }
+
+  } catch (err) {
+
+    console.log(err);
+
+    alert("Server Error");
+  }
+
+});
+
+</script>
+
+</body>
+</html>

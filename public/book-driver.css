@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1d4ed8);
+    padding: 30px 20px;
+}
+
+.booking-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.booking-card {
+    background: #ffffff;
+    padding: 40px 35px;
+    border-radius: 18px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1d4ed8;
+    margin-bottom: 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 34px;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.section-title {
+    font-size: 20px;
+    color: #1e3a8a;
+    margin: 25px 0 15px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #334155;
+    font-size: 14px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s ease;
+    font-family: inherit;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.btn-book {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s ease;
+}
+
+.btn-book:hover {
+    background: #1d4ed8;
+}
+
+.back-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.back-link a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .booking-card {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+}
