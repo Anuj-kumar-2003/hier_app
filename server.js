@@ -44,15 +44,24 @@ app.use('/public',
 // MONGODB CONNECTION
 // ======================
 
-mongoose.connect('mongodb+srv://anujkumar221203:AnujKumar9315266481@hier-major-project.7x8kzsj.mongodb.net/?appName=HIER-Major-Project')
+const mongoose = require("mongoose");
 
-.then(() => {
-  console.log('✅ MongoDB Connected');
-})
+const MONGO_URI =
+  "mongodb+srv://anujkumar221203:AnujKumar9315266481@hier-major-project.7x8kzsj.mongodb.net/?appName=HIER-Major-Project";
 
-.catch((err) => {
-  console.log('❌ MongoDB Error:', err);
-});
+console.log("Testing MongoDB connection...");
+
+mongoose
+  .connect(MONGO_URI, {
+    connectTimeoutMS: 30000,
+    serverSelectionTimeoutMS: 30000,
+  })
+  .then(() => {
+    console.log("✅ Connection successful!");
+  })
+  .catch((err) => {
+    console.error("❌ Connection failed:", err.message);
+  });
 
 // ======================
 // EMAIL TRANSPORTER
